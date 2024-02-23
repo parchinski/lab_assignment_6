@@ -1,24 +1,33 @@
+// Bryant Parchinski
+// Prof. Torosdagli
+// COP3502C-24Spring 0040
+// 2/23/2024
+// lab 6 
 #include <stdio.h>
+#include <stdlib.h>
 
+// binary search function to find value in log(n) time
 int search(int numbers[], int low, int high, int value) 
 {
+    // low and high are the bounds of the array if low is greater than high, then the element is not present in the array
     if (high >= low) 
     {
+        // find the middle index
         int mid = low + (high - low) / 2;
 
-        // If the element is present at the middle itself
+        // if the element is present at the middle element itself return the index
         if (numbers[mid] == value)
             return mid;
 
-        // If element is smaller than mid, then it can only be present in left subarray
+        // value is smaller than mid it can only be present in left subarray
         if (numbers[mid] > value)
             return search(numbers, low, mid - 1, value);
 
-        // Else the element can only be present in right subarray
+        // value can only be present in right subarray
         return search(numbers, mid + 1, high, value);
     }
 
-    // We reach here when element is not present in array
+    // element is not present in array
     return -1;
 }
 
